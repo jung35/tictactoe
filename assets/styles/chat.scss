@@ -1,0 +1,29 @@
+.chatroom {
+  .display-chat {
+    li {
+      &:nth-child(odd):not(.title) {
+        background: #f8f8f8;
+      }
+
+      &.notice {
+        font-size: 11px;
+      }
+      padding: 10px;
+    }
+    margin: 0;
+    padding: 10px 0 0;
+    height: 350px;
+    overflow: auto;
+    width: 100%;
+    list-style: none;
+    border: 1px solid #ddd;
+    border-top: 0;
+  }
+  .chat-input {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-top: 0;
+    font-size: 13px;
+    padding: 10px;
+  }
+}
