@@ -26,7 +26,7 @@ module.exports.sockets = {
         var socketId = sails.sockets.id(socket);
 
         User.create({
-            name: 'unknown',
+            name: null,
             socketId: socketId
         }).exec(function(err, user) {
 

@@ -33,7 +33,7 @@ module.exports.routes = {
   ***************************************************************************/
   '/': {
     view: 'home/home'
-  }
+  },
 
   'post /lobby/:lobbyId/users': 'LobbyController.join',
   'delete /lobby/:lobbyId/users': 'LobbyController.leave'
