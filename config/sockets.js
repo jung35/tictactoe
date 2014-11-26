@@ -22,6 +22,9 @@ module.exports.sockets = {
     *                                                                          *
     ***************************************************************************/
     onConnect: function(session, socket) {
+        console.log('----ONCONNECT');
+        console.log(session);
+        console.log('----');
 
         var socketId = sails.sockets.id(socket);
 
@@ -39,6 +42,8 @@ module.exports.sockets = {
 
             // Persist the session
             session.save();
+
+            console.log(session);
 
             // Send a message to the client with information about the new user
             sails.sockets.emit(socketId, 'hello', user);
@@ -70,19 +75,31 @@ module.exports.sockets = {
     *                                                                          *
     ***************************************************************************/
     onDisconnect: function(session, socket) {
+        console.log('----ONDISCONNECT');
+        console.log(session);
+        console.log(sails.sockets.id(socket));
+        console.log('----');
 
         try {
             // Look up the user ID using the connected socket
             var userId = session.users[sails.sockets.id(socket)].id;
 
+            console.log(userId);
+
             // Get the user instance
             User.findOne(userId).populate('lobbies').exec(function(err, user) {
 
                 // Destroy the user instance
-                User.destroy({id:user.id}).exec(function(){});
+                User.destroy({
+                    id: user.id
+                }).exec(function(){
+
+                });
 
                 // Publish the destroy event to every socket subscribed to this user instance
-                User.publishDestroy(user.id, null, {previous: user});
+                User.publishDestroy(user.id, null, {
+                    previous: user
+                });
             });
         } catch (e) {
             console.log("Error in onDisconnect: ", e);

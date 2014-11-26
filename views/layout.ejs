@@ -55,6 +55,7 @@
               <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#global-chat" aria-controls="home" role="tab" data-toggle="tab">Global</a></li>
                 <li role="presentation"><a href="#lobby-chat" aria-controls="profile" role="tab" data-toggle="tab">Lobby</a></li>
+                <li role="presentation"><a href="#global-users" aria-controls="profile" role="tab" data-toggle="tab">Users</a></li>
               </ul>
             </div>
 
@@ -72,12 +73,21 @@
               </div>
               <div role="tabpanel" class="tab-pane" id="lobby-chat">
                 <div class="col-xs-12">
-                  <ul class="chat-text">
-                    <li class="chat-title">
+                  <ul class="display-chat">
+                    <li class="title">
                       <h4>Lobby Chat &mdash; <small></small></h4>
                     </li>
                   </ul>
                   <input type="text" class="chat-input" placeholder="chat...">
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="global-users">
+                <div class="col-xs-12">
+                  <ul class="display-user-list">
+                    <li class="title">
+                      <h4>Users Online</h4>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>

@@ -11,6 +11,38 @@ io.socket.on('connect', function socketConnected() {
         user_me_updateName(data);
     });
 
+
+    io.socket.on('lobby', function messageReceived(message) {
+        console.log("APP: lobby message");
+        console.log(message);
+    });
+
+
+    io.socket.on('user', function messageReceived(message) {
+        console.log(message);
+
+        switch (message.verb) {
+
+            case 'created':
+                user_global_addUser(message);
+                break;
+
+            case 'updated':
+                user_global_updateUser(message);
+                break;
+
+            case 'destroyed':
+                user_global_removeUser(message);
+                break;
+        }
+    });
+
+    io.socket.get('/user', user_global_userList);
+
+
+
+
+
     $(".set-username-input").keypress(function (e) {
         if (e.which == 13) {
             if(e.currentTarget.value.length == 0 || e.currentTarget.value == window.me.name) {
@@ -26,5 +58,4 @@ io.socket.on('connect', function socketConnected() {
             $login_modal.modal('hide');
         }
     });
-
 });
